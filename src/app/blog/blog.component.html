@@ -1,0 +1,122 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/angular-512.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Angular Blog
+    </a>
+    <div>
+        <button type="button" class="btn btn-success" (click)="modalAddCreate()">ADD</button>
+      <button type="button" class="btn btn-warning" (click)="modalSignInCreate()">Sign IN</button>
+      <button type="button" class="btn btn-info" (click)="modalSignUpCreate()">Sign UP</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container-sm kard mb-3 mt-2" *ngFor="let post of userPosts">
+  <div >
+    <h3> {{ post.topic }}</h3>
+    <p>{{ post.date }}</p>
+    <p> {{ post.message }}</p>
+  </div>
+  <div>
+    <button type="button" class="btn btn-warning " (click)="modalEditCreate()">Edit</button>
+    <button type="button" class="btn btn-danger mx-3" (click)="deletePost()">Delete</button>
+  </div>
+</div>
+
+
+
+
+<!-- Modal Sign In-->
+<div class="fixed" *ngIf="isClickSignIn">
+  <div class="modalSignIn">
+    <div class="mb-3">
+      <div class="align">
+        <h4>Sign In</h4>
+        <button type="button" class="btn btn-danger" (click)="modalSignInCreate()">X</button>
+      </div>
+      <hr>
+      <label for="email" class="form-label">Enter email</label>
+      <input type="text" class="form-control" id="email" placeholder="Email">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Enter password</label>
+      <input type="text" class="form-control" id="password" placeholder="password">
+    </div>
+    <hr>
+    <div class="but-container">
+      <button type="button" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Sign Up-->
+<div class="fixed" *ngIf="isClickSignUp">
+  <div class="modalSignIn">
+    <div class="mb-3">
+      <div class="align">
+        <h4>Sign Up</h4>
+        <button type="button" class="btn btn-danger" (click)="modalSignUpCreate()">X</button>
+      </div>
+      <hr>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username : </label>
+        <input type="text" class="form-control" id="username" placeholder="username">
+      </div>
+      <label for="emailSignUP" class="form-label">Enter email : </label>
+      <input type="text" class="form-control" id="emailSignUP" placeholder="Email">
+    </div>
+    <div class="mb-3">
+      <label for="passwordSignUp" class="form-label">Enter password : </label>
+      <input type="text" class="form-control" id="passwordSignUp" placeholder="password">
+    </div>
+    <hr>
+    <div class="but-container">
+      <button type="button" class="btn btn-success">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!--Modal Edit-->
+<div class="fixed" *ngIf="isClickEdit">
+  <div class="modalEdit">
+    <div class="mb-3">
+      <div class="align">
+        <h4>Edit Post</h4>
+        <button type="button" class="btn btn-danger" (click)="modalEditCreate()">X</button>
+      </div>
+      <label for="title" class="form-label">Title</label>
+      <input type="email" class="form-control" id="title">
+    </div>
+    <div class="mb-3">
+      <label for="text" class="form-label">Text</label>
+      <textarea class="form-control" id="text" rows="3" ></textarea>
+    </div>
+    <hr>
+    <div class="but-container">
+      <button type="button" class="btn btn-success" >Update</button>
+    </div>
+  </div>
+</div>
+
+<!--Modal-->
+<div class="fixed" *ngIf="isClickAdd">
+  <div class="modalEdit">
+    <div class="mb-3">
+      <div class="align">
+        <h4>Add Post</h4>
+        <button type="button" class="btn btn-danger" (click)="modalAddCreate()">X</button>
+      </div>
+      <label for="titleAdd" class="form-label">Title</label>
+      <input type="email" class="form-control" id="titleAdd" [(ngModel)]="topic">
+    </div>
+    <div class="mb-3">
+      <label for="textAdd" class="form-label">Text</label>
+      <textarea class="form-control" id="textAdd" rows="3" [(ngModel)]="message"></textarea>
+    </div>
+    <hr>
+    <div class="but-container">
+      <button type="button" class="btn btn-success" (click)="savePost()">Add</button>
+    </div>
+  </div>
+</div>
